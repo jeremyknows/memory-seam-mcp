@@ -26,6 +26,18 @@ def test_stdio_smoke_recall_envelope(tmp_path: Path) -> None:
         tool_names = {tool.name for tool in tools.tools}
         assert {"memory_seam_health", "memory_seam_context", "memory_seam_recall"} <= tool_names
 
+        health = await session.call_tool("memory_seam_health", {})
+        assert not health.isError, health
+        health_env = json.loads(health.content[0].text)
+        assert health_env["status_code"] == 200
+        assert health_env["bridge"]["transport"] == "stdio"
+
+        context = await session.call_tool("memory_seam_context", {})
+        assert not context.isError, context
+        context_env = json.loads(context.content[0].text)
+        assert context_env["status_code"] == 200
+        assert context_env["body"]["endpoint"] == "context"
+
         result = await session.call_tool(
             "memory_seam_recall",
             {

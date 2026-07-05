@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 authors = [
-  { name = "Jeremy Knows" },
+  { name = "Jeremy Knows", email = "jeremyknows@users.noreply.github.com" },
 ]
 dependencies = [
   "memory-seam @ git+https://github.com/jeremyknows/memory-seam.git",
