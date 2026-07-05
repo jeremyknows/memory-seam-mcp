@@ -130,8 +130,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--root",
+        "--notes",
+        dest="root",
         default=os.environ.get("MEMORY_SEAM_ROOT"),
-        help="Local notes folder to read. May also be set with MEMORY_SEAM_ROOT.",
+        help="Local notes folder to read (--notes is an accepted alias). May also be set with MEMORY_SEAM_ROOT.",
     )
     parser.add_argument(
         "--adapter",
